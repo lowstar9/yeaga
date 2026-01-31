@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id          BigInt    @id @default(autoincrement())
+  ticker      String    @unique @db.VarChar(12)
+  name        String    @db.VarChar(128)
+  market      String    @db.VarChar(16)
+  sector      String?   @db.VarChar(128)
+  listedAt    DateTime?
+  marketCap   BigInt?
+  marketCapAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+
+  financials   Financial[]
+  ingestStatus CompanyIngestStatus?
+  ingestJobs   IngestJob[]
+}
+
+model ReportPeriod {
+  id            BigInt    @id @default(autoincrement())
+  fiscalYear    Int
+  fiscalQuarter Int
+  periodType    String    @db.VarChar(16)
+  reportName    String?   @db.VarChar(64)
+  reportDate    DateTime?
+
+  financials Financial[]
+
+  @@unique([fiscalYear, fiscalQuarter, periodType, reportName])
+}
+
+model FinancialItem {
+  id            BigInt  @id @default(autoincrement())
+  itemCode      String  @unique @db.VarChar(64)
+  itemName      String  @db.VarChar(128)
+  statementType String  @db.VarChar(16)
+  unit          String? @db.VarChar(16)
+
+  financials Financial[]
+}
+
+model Financial {
+  id        BigInt   @id @default(autoincrement())
+  companyId BigInt
+  periodId  BigInt
+  itemId    BigInt
+  value     Decimal  @db.Decimal(20, 2)
+  currency  String   @default("KRW") @db.VarChar(8)
+  source    String   @default("opendart") @db.VarChar(32)
+  createdAt DateTime @default(now())
+
+  company Company       @relation(fields: [companyId], references: [id])
+  period  ReportPeriod  @relation(fields: [periodId], references: [id])
+  item    FinancialItem @relation(fields: [itemId], references: [id])
+
+  @@unique([companyId, periodId, itemId])
+  @@index([companyId, periodId])
+}
+
+model CompanyIngestStatus {
+  companyId       BigInt    @id
+  lastSuccessAt   DateTime?
+  lastErrorAt     DateTime?
+  lastErrorMsg    String?
+  progressYear    Int?
+  progressQuarter Int?
+  status          String    @default("idle") @db.VarChar(16)
+
+  company Company @relation(fields: [companyId], references: [id])
+}
+
+model IngestJob {
+  id            BigInt   @id @default(autoincrement())
+  companyId     BigInt
+  fiscalYear    Int
+  fiscalQuarter Int
+  priority      Int      @default(1000)
+  status        String   @default("pending") @db.VarChar(16)
+  retries       Int      @default(0)
+  lastErrorMsg  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
+
+  company Company     @relation(fields: [companyId], references: [id])
+  logs    IngestLog[]
+
+  @@unique([companyId, fiscalYear, fiscalQuarter])
+  @@index([status, priority, createdAt])
+}
+
+model IngestControl {
+  id        Int      @id @default(1)
+  runState  String   @default("run") @db.VarChar(16)
+  updatedAt DateTime @default(now())
+}
+
+model IngestLog {
+  id        BigInt   @id @default(autoincrement())
+  jobId     BigInt?
+  level     String   @db.VarChar(8)
+  message   String
+  createdAt DateTime @default(now())
+
+  job IngestJob? @relation(fields: [jobId], references: [id])
+}
