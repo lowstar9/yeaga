@@ -1,7 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.routes import router
+import uvicorn
 
+from app.api.routes import router
+from app.core.config import settings
+from app.core.logging import setup_logging
+
+# Initialize logging before app creation.
+setup_logging(settings.fastapi_log_level)
 app = FastAPI(title="yeaga collector api")
 
 app.add_middleware(

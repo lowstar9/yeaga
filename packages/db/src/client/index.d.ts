@@ -1605,6 +1605,8 @@ export namespace Prisma {
     name: string | null
     market: string | null
     sector: string | null
+    corpCode: string | null
+    state: string | null
     listedAt: Date | null
     marketCap: bigint | null
     marketCapAt: Date | null
@@ -1618,6 +1620,8 @@ export namespace Prisma {
     name: string | null
     market: string | null
     sector: string | null
+    corpCode: string | null
+    state: string | null
     listedAt: Date | null
     marketCap: bigint | null
     marketCapAt: Date | null
@@ -1631,6 +1635,8 @@ export namespace Prisma {
     name: number
     market: number
     sector: number
+    corpCode: number
+    state: number
     listedAt: number
     marketCap: number
     marketCapAt: number
@@ -1656,6 +1662,8 @@ export namespace Prisma {
     name?: true
     market?: true
     sector?: true
+    corpCode?: true
+    state?: true
     listedAt?: true
     marketCap?: true
     marketCapAt?: true
@@ -1669,6 +1677,8 @@ export namespace Prisma {
     name?: true
     market?: true
     sector?: true
+    corpCode?: true
+    state?: true
     listedAt?: true
     marketCap?: true
     marketCapAt?: true
@@ -1682,6 +1692,8 @@ export namespace Prisma {
     name?: true
     market?: true
     sector?: true
+    corpCode?: true
+    state?: true
     listedAt?: true
     marketCap?: true
     marketCapAt?: true
@@ -1782,6 +1794,8 @@ export namespace Prisma {
     name: string
     market: string
     sector: string | null
+    corpCode: string | null
+    state: string
     listedAt: Date | null
     marketCap: bigint | null
     marketCapAt: Date | null
@@ -1814,6 +1828,8 @@ export namespace Prisma {
     name?: boolean
     market?: boolean
     sector?: boolean
+    corpCode?: boolean
+    state?: boolean
     listedAt?: boolean
     marketCap?: boolean
     marketCapAt?: boolean
@@ -1831,6 +1847,8 @@ export namespace Prisma {
     name?: boolean
     market?: boolean
     sector?: boolean
+    corpCode?: boolean
+    state?: boolean
     listedAt?: boolean
     marketCap?: boolean
     marketCapAt?: boolean
@@ -1844,6 +1862,8 @@ export namespace Prisma {
     name?: boolean
     market?: boolean
     sector?: boolean
+    corpCode?: boolean
+    state?: boolean
     listedAt?: boolean
     marketCap?: boolean
     marketCapAt?: boolean
@@ -1872,6 +1892,8 @@ export namespace Prisma {
       name: string
       market: string
       sector: string | null
+      corpCode: string | null
+      state: string
       listedAt: Date | null
       marketCap: bigint | null
       marketCapAt: Date | null
@@ -2278,6 +2300,8 @@ export namespace Prisma {
     readonly name: FieldRef<"Company", 'String'>
     readonly market: FieldRef<"Company", 'String'>
     readonly sector: FieldRef<"Company", 'String'>
+    readonly corpCode: FieldRef<"Company", 'String'>
+    readonly state: FieldRef<"Company", 'String'>
     readonly listedAt: FieldRef<"Company", 'DateTime'>
     readonly marketCap: FieldRef<"Company", 'BigInt'>
     readonly marketCapAt: FieldRef<"Company", 'DateTime'>
@@ -2681,19 +2705,17 @@ export namespace Prisma {
   export type ReportPeriodAvgAggregateOutputType = {
     id: number | null
     fiscalYear: number | null
-    fiscalQuarter: number | null
   }
 
   export type ReportPeriodSumAggregateOutputType = {
     id: bigint | null
     fiscalYear: number | null
-    fiscalQuarter: number | null
   }
 
   export type ReportPeriodMinAggregateOutputType = {
     id: bigint | null
     fiscalYear: number | null
-    fiscalQuarter: number | null
+    reprtCode: string | null
     periodType: string | null
     reportName: string | null
     reportDate: Date | null
@@ -2702,7 +2724,7 @@ export namespace Prisma {
   export type ReportPeriodMaxAggregateOutputType = {
     id: bigint | null
     fiscalYear: number | null
-    fiscalQuarter: number | null
+    reprtCode: string | null
     periodType: string | null
     reportName: string | null
     reportDate: Date | null
@@ -2711,7 +2733,7 @@ export namespace Prisma {
   export type ReportPeriodCountAggregateOutputType = {
     id: number
     fiscalYear: number
-    fiscalQuarter: number
+    reprtCode: number
     periodType: number
     reportName: number
     reportDate: number
@@ -2722,19 +2744,17 @@ export namespace Prisma {
   export type ReportPeriodAvgAggregateInputType = {
     id?: true
     fiscalYear?: true
-    fiscalQuarter?: true
   }
 
   export type ReportPeriodSumAggregateInputType = {
     id?: true
     fiscalYear?: true
-    fiscalQuarter?: true
   }
 
   export type ReportPeriodMinAggregateInputType = {
     id?: true
     fiscalYear?: true
-    fiscalQuarter?: true
+    reprtCode?: true
     periodType?: true
     reportName?: true
     reportDate?: true
@@ -2743,7 +2763,7 @@ export namespace Prisma {
   export type ReportPeriodMaxAggregateInputType = {
     id?: true
     fiscalYear?: true
-    fiscalQuarter?: true
+    reprtCode?: true
     periodType?: true
     reportName?: true
     reportDate?: true
@@ -2752,7 +2772,7 @@ export namespace Prisma {
   export type ReportPeriodCountAggregateInputType = {
     id?: true
     fiscalYear?: true
-    fiscalQuarter?: true
+    reprtCode?: true
     periodType?: true
     reportName?: true
     reportDate?: true
@@ -2848,7 +2868,7 @@ export namespace Prisma {
   export type ReportPeriodGroupByOutputType = {
     id: bigint
     fiscalYear: number
-    fiscalQuarter: number
+    reprtCode: string
     periodType: string
     reportName: string | null
     reportDate: Date | null
@@ -2876,7 +2896,7 @@ export namespace Prisma {
   export type ReportPeriodSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     fiscalYear?: boolean
-    fiscalQuarter?: boolean
+    reprtCode?: boolean
     periodType?: boolean
     reportName?: boolean
     reportDate?: boolean
@@ -2887,7 +2907,7 @@ export namespace Prisma {
   export type ReportPeriodSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     fiscalYear?: boolean
-    fiscalQuarter?: boolean
+    reprtCode?: boolean
     periodType?: boolean
     reportName?: boolean
     reportDate?: boolean
@@ -2896,7 +2916,7 @@ export namespace Prisma {
   export type ReportPeriodSelectScalar = {
     id?: boolean
     fiscalYear?: boolean
-    fiscalQuarter?: boolean
+    reprtCode?: boolean
     periodType?: boolean
     reportName?: boolean
     reportDate?: boolean
@@ -2916,7 +2936,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       fiscalYear: number
-      fiscalQuarter: number
+      reprtCode: string
       periodType: string
       reportName: string | null
       reportDate: Date | null
@@ -3316,7 +3336,7 @@ export namespace Prisma {
   interface ReportPeriodFieldRefs {
     readonly id: FieldRef<"ReportPeriod", 'BigInt'>
     readonly fiscalYear: FieldRef<"ReportPeriod", 'Int'>
-    readonly fiscalQuarter: FieldRef<"ReportPeriod", 'Int'>
+    readonly reprtCode: FieldRef<"ReportPeriod", 'String'>
     readonly periodType: FieldRef<"ReportPeriod", 'String'>
     readonly reportName: FieldRef<"ReportPeriod", 'String'>
     readonly reportDate: FieldRef<"ReportPeriod", 'DateTime'>
@@ -3693,6 +3713,7 @@ export namespace Prisma {
     itemCode: string | null
     itemName: string | null
     statementType: string | null
+    fsType: string | null
     unit: string | null
   }
 
@@ -3701,6 +3722,7 @@ export namespace Prisma {
     itemCode: string | null
     itemName: string | null
     statementType: string | null
+    fsType: string | null
     unit: string | null
   }
 
@@ -3709,6 +3731,7 @@ export namespace Prisma {
     itemCode: number
     itemName: number
     statementType: number
+    fsType: number
     unit: number
     _all: number
   }
@@ -3727,6 +3750,7 @@ export namespace Prisma {
     itemCode?: true
     itemName?: true
     statementType?: true
+    fsType?: true
     unit?: true
   }
 
@@ -3735,6 +3759,7 @@ export namespace Prisma {
     itemCode?: true
     itemName?: true
     statementType?: true
+    fsType?: true
     unit?: true
   }
 
@@ -3743,6 +3768,7 @@ export namespace Prisma {
     itemCode?: true
     itemName?: true
     statementType?: true
+    fsType?: true
     unit?: true
     _all?: true
   }
@@ -3838,6 +3864,7 @@ export namespace Prisma {
     itemCode: string
     itemName: string
     statementType: string
+    fsType: string | null
     unit: string | null
     _count: FinancialItemCountAggregateOutputType | null
     _avg: FinancialItemAvgAggregateOutputType | null
@@ -3865,6 +3892,7 @@ export namespace Prisma {
     itemCode?: boolean
     itemName?: boolean
     statementType?: boolean
+    fsType?: boolean
     unit?: boolean
     financials?: boolean | FinancialItem$financialsArgs<ExtArgs>
     _count?: boolean | FinancialItemCountOutputTypeDefaultArgs<ExtArgs>
@@ -3875,6 +3903,7 @@ export namespace Prisma {
     itemCode?: boolean
     itemName?: boolean
     statementType?: boolean
+    fsType?: boolean
     unit?: boolean
   }, ExtArgs["result"]["financialItem"]>
 
@@ -3883,6 +3912,7 @@ export namespace Prisma {
     itemCode?: boolean
     itemName?: boolean
     statementType?: boolean
+    fsType?: boolean
     unit?: boolean
   }
 
@@ -3902,6 +3932,7 @@ export namespace Prisma {
       itemCode: string
       itemName: string
       statementType: string
+      fsType: string | null
       unit: string | null
     }, ExtArgs["result"]["financialItem"]>
     composites: {}
@@ -4301,6 +4332,7 @@ export namespace Prisma {
     readonly itemCode: FieldRef<"FinancialItem", 'String'>
     readonly itemName: FieldRef<"FinancialItem", 'String'>
     readonly statementType: FieldRef<"FinancialItem", 'String'>
+    readonly fsType: FieldRef<"FinancialItem", 'String'>
     readonly unit: FieldRef<"FinancialItem", 'String'>
   }
     
@@ -4667,6 +4699,7 @@ export namespace Prisma {
     companyId: number | null
     periodId: number | null
     itemId: number | null
+    fiscalYear: number | null
     value: Decimal | null
   }
 
@@ -4675,6 +4708,7 @@ export namespace Prisma {
     companyId: bigint | null
     periodId: bigint | null
     itemId: bigint | null
+    fiscalYear: number | null
     value: Decimal | null
   }
 
@@ -4683,6 +4717,8 @@ export namespace Prisma {
     companyId: bigint | null
     periodId: bigint | null
     itemId: bigint | null
+    market: string | null
+    fiscalYear: number | null
     value: Decimal | null
     currency: string | null
     source: string | null
@@ -4694,6 +4730,8 @@ export namespace Prisma {
     companyId: bigint | null
     periodId: bigint | null
     itemId: bigint | null
+    market: string | null
+    fiscalYear: number | null
     value: Decimal | null
     currency: string | null
     source: string | null
@@ -4705,6 +4743,8 @@ export namespace Prisma {
     companyId: number
     periodId: number
     itemId: number
+    market: number
+    fiscalYear: number
     value: number
     currency: number
     source: number
@@ -4718,6 +4758,7 @@ export namespace Prisma {
     companyId?: true
     periodId?: true
     itemId?: true
+    fiscalYear?: true
     value?: true
   }
 
@@ -4726,6 +4767,7 @@ export namespace Prisma {
     companyId?: true
     periodId?: true
     itemId?: true
+    fiscalYear?: true
     value?: true
   }
 
@@ -4734,6 +4776,8 @@ export namespace Prisma {
     companyId?: true
     periodId?: true
     itemId?: true
+    market?: true
+    fiscalYear?: true
     value?: true
     currency?: true
     source?: true
@@ -4745,6 +4789,8 @@ export namespace Prisma {
     companyId?: true
     periodId?: true
     itemId?: true
+    market?: true
+    fiscalYear?: true
     value?: true
     currency?: true
     source?: true
@@ -4756,6 +4802,8 @@ export namespace Prisma {
     companyId?: true
     periodId?: true
     itemId?: true
+    market?: true
+    fiscalYear?: true
     value?: true
     currency?: true
     source?: true
@@ -4854,6 +4902,8 @@ export namespace Prisma {
     companyId: bigint
     periodId: bigint
     itemId: bigint
+    market: string
+    fiscalYear: number
     value: Decimal
     currency: string
     source: string
@@ -4884,6 +4934,8 @@ export namespace Prisma {
     companyId?: boolean
     periodId?: boolean
     itemId?: boolean
+    market?: boolean
+    fiscalYear?: boolean
     value?: boolean
     currency?: boolean
     source?: boolean
@@ -4898,6 +4950,8 @@ export namespace Prisma {
     companyId?: boolean
     periodId?: boolean
     itemId?: boolean
+    market?: boolean
+    fiscalYear?: boolean
     value?: boolean
     currency?: boolean
     source?: boolean
@@ -4912,6 +4966,8 @@ export namespace Prisma {
     companyId?: boolean
     periodId?: boolean
     itemId?: boolean
+    market?: boolean
+    fiscalYear?: boolean
     value?: boolean
     currency?: boolean
     source?: boolean
@@ -4941,6 +4997,8 @@ export namespace Prisma {
       companyId: bigint
       periodId: bigint
       itemId: bigint
+      market: string
+      fiscalYear: number
       value: Prisma.Decimal
       currency: string
       source: string
@@ -5345,6 +5403,8 @@ export namespace Prisma {
     readonly companyId: FieldRef<"Financial", 'BigInt'>
     readonly periodId: FieldRef<"Financial", 'BigInt'>
     readonly itemId: FieldRef<"Financial", 'BigInt'>
+    readonly market: FieldRef<"Financial", 'String'>
+    readonly fiscalYear: FieldRef<"Financial", 'Int'>
     readonly value: FieldRef<"Financial", 'Decimal'>
     readonly currency: FieldRef<"Financial", 'String'>
     readonly source: FieldRef<"Financial", 'String'>
@@ -5696,13 +5756,11 @@ export namespace Prisma {
   export type CompanyIngestStatusAvgAggregateOutputType = {
     companyId: number | null
     progressYear: number | null
-    progressQuarter: number | null
   }
 
   export type CompanyIngestStatusSumAggregateOutputType = {
     companyId: bigint | null
     progressYear: number | null
-    progressQuarter: number | null
   }
 
   export type CompanyIngestStatusMinAggregateOutputType = {
@@ -5711,7 +5769,7 @@ export namespace Prisma {
     lastErrorAt: Date | null
     lastErrorMsg: string | null
     progressYear: number | null
-    progressQuarter: number | null
+    reprtCode: string | null
     status: string | null
   }
 
@@ -5721,7 +5779,7 @@ export namespace Prisma {
     lastErrorAt: Date | null
     lastErrorMsg: string | null
     progressYear: number | null
-    progressQuarter: number | null
+    reprtCode: string | null
     status: string | null
   }
 
@@ -5731,7 +5789,7 @@ export namespace Prisma {
     lastErrorAt: number
     lastErrorMsg: number
     progressYear: number
-    progressQuarter: number
+    reprtCode: number
     status: number
     _all: number
   }
@@ -5740,13 +5798,11 @@ export namespace Prisma {
   export type CompanyIngestStatusAvgAggregateInputType = {
     companyId?: true
     progressYear?: true
-    progressQuarter?: true
   }
 
   export type CompanyIngestStatusSumAggregateInputType = {
     companyId?: true
     progressYear?: true
-    progressQuarter?: true
   }
 
   export type CompanyIngestStatusMinAggregateInputType = {
@@ -5755,7 +5811,7 @@ export namespace Prisma {
     lastErrorAt?: true
     lastErrorMsg?: true
     progressYear?: true
-    progressQuarter?: true
+    reprtCode?: true
     status?: true
   }
 
@@ -5765,7 +5821,7 @@ export namespace Prisma {
     lastErrorAt?: true
     lastErrorMsg?: true
     progressYear?: true
-    progressQuarter?: true
+    reprtCode?: true
     status?: true
   }
 
@@ -5775,7 +5831,7 @@ export namespace Prisma {
     lastErrorAt?: true
     lastErrorMsg?: true
     progressYear?: true
-    progressQuarter?: true
+    reprtCode?: true
     status?: true
     _all?: true
   }
@@ -5872,7 +5928,7 @@ export namespace Prisma {
     lastErrorAt: Date | null
     lastErrorMsg: string | null
     progressYear: number | null
-    progressQuarter: number | null
+    reprtCode: string | null
     status: string
     _count: CompanyIngestStatusCountAggregateOutputType | null
     _avg: CompanyIngestStatusAvgAggregateOutputType | null
@@ -5901,7 +5957,7 @@ export namespace Prisma {
     lastErrorAt?: boolean
     lastErrorMsg?: boolean
     progressYear?: boolean
-    progressQuarter?: boolean
+    reprtCode?: boolean
     status?: boolean
     company?: boolean | CompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["companyIngestStatus"]>
@@ -5912,7 +5968,7 @@ export namespace Prisma {
     lastErrorAt?: boolean
     lastErrorMsg?: boolean
     progressYear?: boolean
-    progressQuarter?: boolean
+    reprtCode?: boolean
     status?: boolean
     company?: boolean | CompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["companyIngestStatus"]>
@@ -5923,7 +5979,7 @@ export namespace Prisma {
     lastErrorAt?: boolean
     lastErrorMsg?: boolean
     progressYear?: boolean
-    progressQuarter?: boolean
+    reprtCode?: boolean
     status?: boolean
   }
 
@@ -5945,7 +6001,7 @@ export namespace Prisma {
       lastErrorAt: Date | null
       lastErrorMsg: string | null
       progressYear: number | null
-      progressQuarter: number | null
+      reprtCode: string | null
       status: string
     }, ExtArgs["result"]["companyIngestStatus"]>
     composites: {}
@@ -6346,7 +6402,7 @@ export namespace Prisma {
     readonly lastErrorAt: FieldRef<"CompanyIngestStatus", 'DateTime'>
     readonly lastErrorMsg: FieldRef<"CompanyIngestStatus", 'String'>
     readonly progressYear: FieldRef<"CompanyIngestStatus", 'Int'>
-    readonly progressQuarter: FieldRef<"CompanyIngestStatus", 'Int'>
+    readonly reprtCode: FieldRef<"CompanyIngestStatus", 'String'>
     readonly status: FieldRef<"CompanyIngestStatus", 'String'>
   }
     
@@ -6696,7 +6752,7 @@ export namespace Prisma {
     id: number | null
     companyId: number | null
     fiscalYear: number | null
-    fiscalQuarter: number | null
+    fiscalMonth: number | null
     priority: number | null
     retries: number | null
   }
@@ -6705,7 +6761,7 @@ export namespace Prisma {
     id: bigint | null
     companyId: bigint | null
     fiscalYear: number | null
-    fiscalQuarter: number | null
+    fiscalMonth: number | null
     priority: number | null
     retries: number | null
   }
@@ -6714,7 +6770,8 @@ export namespace Prisma {
     id: bigint | null
     companyId: bigint | null
     fiscalYear: number | null
-    fiscalQuarter: number | null
+    fiscalMonth: number | null
+    reprtCode: string | null
     priority: number | null
     status: string | null
     retries: number | null
@@ -6727,7 +6784,8 @@ export namespace Prisma {
     id: bigint | null
     companyId: bigint | null
     fiscalYear: number | null
-    fiscalQuarter: number | null
+    fiscalMonth: number | null
+    reprtCode: string | null
     priority: number | null
     status: string | null
     retries: number | null
@@ -6740,7 +6798,8 @@ export namespace Prisma {
     id: number
     companyId: number
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
+    reprtCode: number
     priority: number
     status: number
     retries: number
@@ -6755,7 +6814,7 @@ export namespace Prisma {
     id?: true
     companyId?: true
     fiscalYear?: true
-    fiscalQuarter?: true
+    fiscalMonth?: true
     priority?: true
     retries?: true
   }
@@ -6764,7 +6823,7 @@ export namespace Prisma {
     id?: true
     companyId?: true
     fiscalYear?: true
-    fiscalQuarter?: true
+    fiscalMonth?: true
     priority?: true
     retries?: true
   }
@@ -6773,7 +6832,8 @@ export namespace Prisma {
     id?: true
     companyId?: true
     fiscalYear?: true
-    fiscalQuarter?: true
+    fiscalMonth?: true
+    reprtCode?: true
     priority?: true
     status?: true
     retries?: true
@@ -6786,7 +6846,8 @@ export namespace Prisma {
     id?: true
     companyId?: true
     fiscalYear?: true
-    fiscalQuarter?: true
+    fiscalMonth?: true
+    reprtCode?: true
     priority?: true
     status?: true
     retries?: true
@@ -6799,7 +6860,8 @@ export namespace Prisma {
     id?: true
     companyId?: true
     fiscalYear?: true
-    fiscalQuarter?: true
+    fiscalMonth?: true
+    reprtCode?: true
     priority?: true
     status?: true
     retries?: true
@@ -6899,7 +6961,8 @@ export namespace Prisma {
     id: bigint
     companyId: bigint
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
+    reprtCode: string
     priority: number
     status: string
     retries: number
@@ -6931,7 +6994,8 @@ export namespace Prisma {
     id?: boolean
     companyId?: boolean
     fiscalYear?: boolean
-    fiscalQuarter?: boolean
+    fiscalMonth?: boolean
+    reprtCode?: boolean
     priority?: boolean
     status?: boolean
     retries?: boolean
@@ -6947,7 +7011,8 @@ export namespace Prisma {
     id?: boolean
     companyId?: boolean
     fiscalYear?: boolean
-    fiscalQuarter?: boolean
+    fiscalMonth?: boolean
+    reprtCode?: boolean
     priority?: boolean
     status?: boolean
     retries?: boolean
@@ -6961,7 +7026,8 @@ export namespace Prisma {
     id?: boolean
     companyId?: boolean
     fiscalYear?: boolean
-    fiscalQuarter?: boolean
+    fiscalMonth?: boolean
+    reprtCode?: boolean
     priority?: boolean
     status?: boolean
     retries?: boolean
@@ -6989,7 +7055,8 @@ export namespace Prisma {
       id: bigint
       companyId: bigint
       fiscalYear: number
-      fiscalQuarter: number
+      fiscalMonth: number
+      reprtCode: string
       priority: number
       status: string
       retries: number
@@ -7394,7 +7461,8 @@ export namespace Prisma {
     readonly id: FieldRef<"IngestJob", 'BigInt'>
     readonly companyId: FieldRef<"IngestJob", 'BigInt'>
     readonly fiscalYear: FieldRef<"IngestJob", 'Int'>
-    readonly fiscalQuarter: FieldRef<"IngestJob", 'Int'>
+    readonly fiscalMonth: FieldRef<"IngestJob", 'Int'>
+    readonly reprtCode: FieldRef<"IngestJob", 'String'>
     readonly priority: FieldRef<"IngestJob", 'Int'>
     readonly status: FieldRef<"IngestJob", 'String'>
     readonly retries: FieldRef<"IngestJob", 'Int'>
@@ -9647,6 +9715,8 @@ export namespace Prisma {
     name: 'name',
     market: 'market',
     sector: 'sector',
+    corpCode: 'corpCode',
+    state: 'state',
     listedAt: 'listedAt',
     marketCap: 'marketCap',
     marketCapAt: 'marketCapAt',
@@ -9660,7 +9730,7 @@ export namespace Prisma {
   export const ReportPeriodScalarFieldEnum: {
     id: 'id',
     fiscalYear: 'fiscalYear',
-    fiscalQuarter: 'fiscalQuarter',
+    reprtCode: 'reprtCode',
     periodType: 'periodType',
     reportName: 'reportName',
     reportDate: 'reportDate'
@@ -9674,6 +9744,7 @@ export namespace Prisma {
     itemCode: 'itemCode',
     itemName: 'itemName',
     statementType: 'statementType',
+    fsType: 'fsType',
     unit: 'unit'
   };
 
@@ -9685,6 +9756,8 @@ export namespace Prisma {
     companyId: 'companyId',
     periodId: 'periodId',
     itemId: 'itemId',
+    market: 'market',
+    fiscalYear: 'fiscalYear',
     value: 'value',
     currency: 'currency',
     source: 'source',
@@ -9700,7 +9773,7 @@ export namespace Prisma {
     lastErrorAt: 'lastErrorAt',
     lastErrorMsg: 'lastErrorMsg',
     progressYear: 'progressYear',
-    progressQuarter: 'progressQuarter',
+    reprtCode: 'reprtCode',
     status: 'status'
   };
 
@@ -9711,7 +9784,8 @@ export namespace Prisma {
     id: 'id',
     companyId: 'companyId',
     fiscalYear: 'fiscalYear',
-    fiscalQuarter: 'fiscalQuarter',
+    fiscalMonth: 'fiscalMonth',
+    reprtCode: 'reprtCode',
     priority: 'priority',
     status: 'status',
     retries: 'retries',
@@ -9868,6 +9942,8 @@ export namespace Prisma {
     name?: StringFilter<"Company"> | string
     market?: StringFilter<"Company"> | string
     sector?: StringNullableFilter<"Company"> | string | null
+    corpCode?: StringNullableFilter<"Company"> | string | null
+    state?: StringFilter<"Company"> | string
     listedAt?: DateTimeNullableFilter<"Company"> | Date | string | null
     marketCap?: BigIntNullableFilter<"Company"> | bigint | number | null
     marketCapAt?: DateTimeNullableFilter<"Company"> | Date | string | null
@@ -9884,6 +9960,8 @@ export namespace Prisma {
     name?: SortOrder
     market?: SortOrder
     sector?: SortOrderInput | SortOrder
+    corpCode?: SortOrderInput | SortOrder
+    state?: SortOrder
     listedAt?: SortOrderInput | SortOrder
     marketCap?: SortOrderInput | SortOrder
     marketCapAt?: SortOrderInput | SortOrder
@@ -9903,6 +9981,8 @@ export namespace Prisma {
     name?: StringFilter<"Company"> | string
     market?: StringFilter<"Company"> | string
     sector?: StringNullableFilter<"Company"> | string | null
+    corpCode?: StringNullableFilter<"Company"> | string | null
+    state?: StringFilter<"Company"> | string
     listedAt?: DateTimeNullableFilter<"Company"> | Date | string | null
     marketCap?: BigIntNullableFilter<"Company"> | bigint | number | null
     marketCapAt?: DateTimeNullableFilter<"Company"> | Date | string | null
@@ -9919,6 +9999,8 @@ export namespace Prisma {
     name?: SortOrder
     market?: SortOrder
     sector?: SortOrderInput | SortOrder
+    corpCode?: SortOrderInput | SortOrder
+    state?: SortOrder
     listedAt?: SortOrderInput | SortOrder
     marketCap?: SortOrderInput | SortOrder
     marketCapAt?: SortOrderInput | SortOrder
@@ -9940,6 +10022,8 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Company"> | string
     market?: StringWithAggregatesFilter<"Company"> | string
     sector?: StringNullableWithAggregatesFilter<"Company"> | string | null
+    corpCode?: StringNullableWithAggregatesFilter<"Company"> | string | null
+    state?: StringWithAggregatesFilter<"Company"> | string
     listedAt?: DateTimeNullableWithAggregatesFilter<"Company"> | Date | string | null
     marketCap?: BigIntNullableWithAggregatesFilter<"Company"> | bigint | number | null
     marketCapAt?: DateTimeNullableWithAggregatesFilter<"Company"> | Date | string | null
@@ -9953,7 +10037,7 @@ export namespace Prisma {
     NOT?: ReportPeriodWhereInput | ReportPeriodWhereInput[]
     id?: BigIntFilter<"ReportPeriod"> | bigint | number
     fiscalYear?: IntFilter<"ReportPeriod"> | number
-    fiscalQuarter?: IntFilter<"ReportPeriod"> | number
+    reprtCode?: StringFilter<"ReportPeriod"> | string
     periodType?: StringFilter<"ReportPeriod"> | string
     reportName?: StringNullableFilter<"ReportPeriod"> | string | null
     reportDate?: DateTimeNullableFilter<"ReportPeriod"> | Date | string | null
@@ -9963,7 +10047,7 @@ export namespace Prisma {
   export type ReportPeriodOrderByWithRelationInput = {
     id?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    reprtCode?: SortOrder
     periodType?: SortOrder
     reportName?: SortOrderInput | SortOrder
     reportDate?: SortOrderInput | SortOrder
@@ -9972,22 +10056,22 @@ export namespace Prisma {
 
   export type ReportPeriodWhereUniqueInput = Prisma.AtLeast<{
     id?: bigint | number
-    fiscalYear_fiscalQuarter_periodType_reportName?: ReportPeriodFiscalYearFiscalQuarterPeriodTypeReportNameCompoundUniqueInput
+    fiscalYear_reprtCode_periodType_reportName?: ReportPeriodFiscalYearReprtCodePeriodTypeReportNameCompoundUniqueInput
     AND?: ReportPeriodWhereInput | ReportPeriodWhereInput[]
     OR?: ReportPeriodWhereInput[]
     NOT?: ReportPeriodWhereInput | ReportPeriodWhereInput[]
     fiscalYear?: IntFilter<"ReportPeriod"> | number
-    fiscalQuarter?: IntFilter<"ReportPeriod"> | number
+    reprtCode?: StringFilter<"ReportPeriod"> | string
     periodType?: StringFilter<"ReportPeriod"> | string
     reportName?: StringNullableFilter<"ReportPeriod"> | string | null
     reportDate?: DateTimeNullableFilter<"ReportPeriod"> | Date | string | null
     financials?: FinancialListRelationFilter
-  }, "id" | "fiscalYear_fiscalQuarter_periodType_reportName">
+  }, "id" | "fiscalYear_reprtCode_periodType_reportName">
 
   export type ReportPeriodOrderByWithAggregationInput = {
     id?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    reprtCode?: SortOrder
     periodType?: SortOrder
     reportName?: SortOrderInput | SortOrder
     reportDate?: SortOrderInput | SortOrder
@@ -10004,7 +10088,7 @@ export namespace Prisma {
     NOT?: ReportPeriodScalarWhereWithAggregatesInput | ReportPeriodScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"ReportPeriod"> | bigint | number
     fiscalYear?: IntWithAggregatesFilter<"ReportPeriod"> | number
-    fiscalQuarter?: IntWithAggregatesFilter<"ReportPeriod"> | number
+    reprtCode?: StringWithAggregatesFilter<"ReportPeriod"> | string
     periodType?: StringWithAggregatesFilter<"ReportPeriod"> | string
     reportName?: StringNullableWithAggregatesFilter<"ReportPeriod"> | string | null
     reportDate?: DateTimeNullableWithAggregatesFilter<"ReportPeriod"> | Date | string | null
@@ -10018,6 +10102,7 @@ export namespace Prisma {
     itemCode?: StringFilter<"FinancialItem"> | string
     itemName?: StringFilter<"FinancialItem"> | string
     statementType?: StringFilter<"FinancialItem"> | string
+    fsType?: StringNullableFilter<"FinancialItem"> | string | null
     unit?: StringNullableFilter<"FinancialItem"> | string | null
     financials?: FinancialListRelationFilter
   }
@@ -10027,6 +10112,7 @@ export namespace Prisma {
     itemCode?: SortOrder
     itemName?: SortOrder
     statementType?: SortOrder
+    fsType?: SortOrderInput | SortOrder
     unit?: SortOrderInput | SortOrder
     financials?: FinancialOrderByRelationAggregateInput
   }
@@ -10039,6 +10125,7 @@ export namespace Prisma {
     NOT?: FinancialItemWhereInput | FinancialItemWhereInput[]
     itemName?: StringFilter<"FinancialItem"> | string
     statementType?: StringFilter<"FinancialItem"> | string
+    fsType?: StringNullableFilter<"FinancialItem"> | string | null
     unit?: StringNullableFilter<"FinancialItem"> | string | null
     financials?: FinancialListRelationFilter
   }, "id" | "itemCode">
@@ -10048,6 +10135,7 @@ export namespace Prisma {
     itemCode?: SortOrder
     itemName?: SortOrder
     statementType?: SortOrder
+    fsType?: SortOrderInput | SortOrder
     unit?: SortOrderInput | SortOrder
     _count?: FinancialItemCountOrderByAggregateInput
     _avg?: FinancialItemAvgOrderByAggregateInput
@@ -10064,6 +10152,7 @@ export namespace Prisma {
     itemCode?: StringWithAggregatesFilter<"FinancialItem"> | string
     itemName?: StringWithAggregatesFilter<"FinancialItem"> | string
     statementType?: StringWithAggregatesFilter<"FinancialItem"> | string
+    fsType?: StringNullableWithAggregatesFilter<"FinancialItem"> | string | null
     unit?: StringNullableWithAggregatesFilter<"FinancialItem"> | string | null
   }
 
@@ -10075,6 +10164,8 @@ export namespace Prisma {
     companyId?: BigIntFilter<"Financial"> | bigint | number
     periodId?: BigIntFilter<"Financial"> | bigint | number
     itemId?: BigIntFilter<"Financial"> | bigint | number
+    market?: StringFilter<"Financial"> | string
+    fiscalYear?: IntFilter<"Financial"> | number
     value?: DecimalFilter<"Financial"> | Decimal | DecimalJsLike | number | string
     currency?: StringFilter<"Financial"> | string
     source?: StringFilter<"Financial"> | string
@@ -10089,6 +10180,8 @@ export namespace Prisma {
     companyId?: SortOrder
     periodId?: SortOrder
     itemId?: SortOrder
+    market?: SortOrder
+    fiscalYear?: SortOrder
     value?: SortOrder
     currency?: SortOrder
     source?: SortOrder
@@ -10099,14 +10192,17 @@ export namespace Prisma {
   }
 
   export type FinancialWhereUniqueInput = Prisma.AtLeast<{
-    id?: bigint | number
-    companyId_periodId_itemId?: FinancialCompanyIdPeriodIdItemIdCompoundUniqueInput
+    companyId_periodId_itemId_market_fiscalYear?: FinancialCompanyIdPeriodIdItemIdMarketFiscalYearCompoundUniqueInput
+    id_market_fiscalYear?: FinancialIdMarketFiscalYearCompoundUniqueInput
     AND?: FinancialWhereInput | FinancialWhereInput[]
     OR?: FinancialWhereInput[]
     NOT?: FinancialWhereInput | FinancialWhereInput[]
+    id?: BigIntFilter<"Financial"> | bigint | number
     companyId?: BigIntFilter<"Financial"> | bigint | number
     periodId?: BigIntFilter<"Financial"> | bigint | number
     itemId?: BigIntFilter<"Financial"> | bigint | number
+    market?: StringFilter<"Financial"> | string
+    fiscalYear?: IntFilter<"Financial"> | number
     value?: DecimalFilter<"Financial"> | Decimal | DecimalJsLike | number | string
     currency?: StringFilter<"Financial"> | string
     source?: StringFilter<"Financial"> | string
@@ -10114,13 +10210,15 @@ export namespace Prisma {
     company?: XOR<CompanyRelationFilter, CompanyWhereInput>
     period?: XOR<ReportPeriodRelationFilter, ReportPeriodWhereInput>
     item?: XOR<FinancialItemRelationFilter, FinancialItemWhereInput>
-  }, "id" | "companyId_periodId_itemId">
+  }, "id_market_fiscalYear" | "companyId_periodId_itemId_market_fiscalYear">
 
   export type FinancialOrderByWithAggregationInput = {
     id?: SortOrder
     companyId?: SortOrder
     periodId?: SortOrder
     itemId?: SortOrder
+    market?: SortOrder
+    fiscalYear?: SortOrder
     value?: SortOrder
     currency?: SortOrder
     source?: SortOrder
@@ -10140,6 +10238,8 @@ export namespace Prisma {
     companyId?: BigIntWithAggregatesFilter<"Financial"> | bigint | number
     periodId?: BigIntWithAggregatesFilter<"Financial"> | bigint | number
     itemId?: BigIntWithAggregatesFilter<"Financial"> | bigint | number
+    market?: StringWithAggregatesFilter<"Financial"> | string
+    fiscalYear?: IntWithAggregatesFilter<"Financial"> | number
     value?: DecimalWithAggregatesFilter<"Financial"> | Decimal | DecimalJsLike | number | string
     currency?: StringWithAggregatesFilter<"Financial"> | string
     source?: StringWithAggregatesFilter<"Financial"> | string
@@ -10155,7 +10255,7 @@ export namespace Prisma {
     lastErrorAt?: DateTimeNullableFilter<"CompanyIngestStatus"> | Date | string | null
     lastErrorMsg?: StringNullableFilter<"CompanyIngestStatus"> | string | null
     progressYear?: IntNullableFilter<"CompanyIngestStatus"> | number | null
-    progressQuarter?: IntNullableFilter<"CompanyIngestStatus"> | number | null
+    reprtCode?: StringNullableFilter<"CompanyIngestStatus"> | string | null
     status?: StringFilter<"CompanyIngestStatus"> | string
     company?: XOR<CompanyRelationFilter, CompanyWhereInput>
   }
@@ -10166,7 +10266,7 @@ export namespace Prisma {
     lastErrorAt?: SortOrderInput | SortOrder
     lastErrorMsg?: SortOrderInput | SortOrder
     progressYear?: SortOrderInput | SortOrder
-    progressQuarter?: SortOrderInput | SortOrder
+    reprtCode?: SortOrderInput | SortOrder
     status?: SortOrder
     company?: CompanyOrderByWithRelationInput
   }
@@ -10180,7 +10280,7 @@ export namespace Prisma {
     lastErrorAt?: DateTimeNullableFilter<"CompanyIngestStatus"> | Date | string | null
     lastErrorMsg?: StringNullableFilter<"CompanyIngestStatus"> | string | null
     progressYear?: IntNullableFilter<"CompanyIngestStatus"> | number | null
-    progressQuarter?: IntNullableFilter<"CompanyIngestStatus"> | number | null
+    reprtCode?: StringNullableFilter<"CompanyIngestStatus"> | string | null
     status?: StringFilter<"CompanyIngestStatus"> | string
     company?: XOR<CompanyRelationFilter, CompanyWhereInput>
   }, "companyId">
@@ -10191,7 +10291,7 @@ export namespace Prisma {
     lastErrorAt?: SortOrderInput | SortOrder
     lastErrorMsg?: SortOrderInput | SortOrder
     progressYear?: SortOrderInput | SortOrder
-    progressQuarter?: SortOrderInput | SortOrder
+    reprtCode?: SortOrderInput | SortOrder
     status?: SortOrder
     _count?: CompanyIngestStatusCountOrderByAggregateInput
     _avg?: CompanyIngestStatusAvgOrderByAggregateInput
@@ -10209,7 +10309,7 @@ export namespace Prisma {
     lastErrorAt?: DateTimeNullableWithAggregatesFilter<"CompanyIngestStatus"> | Date | string | null
     lastErrorMsg?: StringNullableWithAggregatesFilter<"CompanyIngestStatus"> | string | null
     progressYear?: IntNullableWithAggregatesFilter<"CompanyIngestStatus"> | number | null
-    progressQuarter?: IntNullableWithAggregatesFilter<"CompanyIngestStatus"> | number | null
+    reprtCode?: StringNullableWithAggregatesFilter<"CompanyIngestStatus"> | string | null
     status?: StringWithAggregatesFilter<"CompanyIngestStatus"> | string
   }
 
@@ -10220,7 +10320,8 @@ export namespace Prisma {
     id?: BigIntFilter<"IngestJob"> | bigint | number
     companyId?: BigIntFilter<"IngestJob"> | bigint | number
     fiscalYear?: IntFilter<"IngestJob"> | number
-    fiscalQuarter?: IntFilter<"IngestJob"> | number
+    fiscalMonth?: IntFilter<"IngestJob"> | number
+    reprtCode?: StringFilter<"IngestJob"> | string
     priority?: IntFilter<"IngestJob"> | number
     status?: StringFilter<"IngestJob"> | string
     retries?: IntFilter<"IngestJob"> | number
@@ -10235,7 +10336,8 @@ export namespace Prisma {
     id?: SortOrder
     companyId?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    fiscalMonth?: SortOrder
+    reprtCode?: SortOrder
     priority?: SortOrder
     status?: SortOrder
     retries?: SortOrder
@@ -10248,13 +10350,14 @@ export namespace Prisma {
 
   export type IngestJobWhereUniqueInput = Prisma.AtLeast<{
     id?: bigint | number
-    companyId_fiscalYear_fiscalQuarter?: IngestJobCompanyIdFiscalYearFiscalQuarterCompoundUniqueInput
+    companyId_fiscalYear_fiscalMonth?: IngestJobCompanyIdFiscalYearFiscalMonthCompoundUniqueInput
     AND?: IngestJobWhereInput | IngestJobWhereInput[]
     OR?: IngestJobWhereInput[]
     NOT?: IngestJobWhereInput | IngestJobWhereInput[]
     companyId?: BigIntFilter<"IngestJob"> | bigint | number
     fiscalYear?: IntFilter<"IngestJob"> | number
-    fiscalQuarter?: IntFilter<"IngestJob"> | number
+    fiscalMonth?: IntFilter<"IngestJob"> | number
+    reprtCode?: StringFilter<"IngestJob"> | string
     priority?: IntFilter<"IngestJob"> | number
     status?: StringFilter<"IngestJob"> | string
     retries?: IntFilter<"IngestJob"> | number
@@ -10263,13 +10366,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"IngestJob"> | Date | string
     company?: XOR<CompanyRelationFilter, CompanyWhereInput>
     logs?: IngestLogListRelationFilter
-  }, "id" | "companyId_fiscalYear_fiscalQuarter">
+  }, "id" | "companyId_fiscalYear_fiscalMonth">
 
   export type IngestJobOrderByWithAggregationInput = {
     id?: SortOrder
     companyId?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    fiscalMonth?: SortOrder
+    reprtCode?: SortOrder
     priority?: SortOrder
     status?: SortOrder
     retries?: SortOrder
@@ -10290,7 +10394,8 @@ export namespace Prisma {
     id?: BigIntWithAggregatesFilter<"IngestJob"> | bigint | number
     companyId?: BigIntWithAggregatesFilter<"IngestJob"> | bigint | number
     fiscalYear?: IntWithAggregatesFilter<"IngestJob"> | number
-    fiscalQuarter?: IntWithAggregatesFilter<"IngestJob"> | number
+    fiscalMonth?: IntWithAggregatesFilter<"IngestJob"> | number
+    reprtCode?: StringWithAggregatesFilter<"IngestJob"> | string
     priority?: IntWithAggregatesFilter<"IngestJob"> | number
     status?: StringWithAggregatesFilter<"IngestJob"> | string
     retries?: IntWithAggregatesFilter<"IngestJob"> | number
@@ -10406,6 +10511,8 @@ export namespace Prisma {
     name: string
     market: string
     sector?: string | null
+    corpCode?: string | null
+    state?: string
     listedAt?: Date | string | null
     marketCap?: bigint | number | null
     marketCapAt?: Date | string | null
@@ -10422,6 +10529,8 @@ export namespace Prisma {
     name: string
     market: string
     sector?: string | null
+    corpCode?: string | null
+    state?: string
     listedAt?: Date | string | null
     marketCap?: bigint | number | null
     marketCapAt?: Date | string | null
@@ -10438,6 +10547,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     sector?: NullableStringFieldUpdateOperationsInput | string | null
+    corpCode?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: StringFieldUpdateOperationsInput | string
     listedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     marketCap?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     marketCapAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10454,6 +10565,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     sector?: NullableStringFieldUpdateOperationsInput | string | null
+    corpCode?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: StringFieldUpdateOperationsInput | string
     listedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     marketCap?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     marketCapAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10470,6 +10583,8 @@ export namespace Prisma {
     name: string
     market: string
     sector?: string | null
+    corpCode?: string | null
+    state?: string
     listedAt?: Date | string | null
     marketCap?: bigint | number | null
     marketCapAt?: Date | string | null
@@ -10483,6 +10598,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     sector?: NullableStringFieldUpdateOperationsInput | string | null
+    corpCode?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: StringFieldUpdateOperationsInput | string
     listedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     marketCap?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     marketCapAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10496,6 +10613,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     sector?: NullableStringFieldUpdateOperationsInput | string | null
+    corpCode?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: StringFieldUpdateOperationsInput | string
     listedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     marketCap?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     marketCapAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10506,7 +10625,7 @@ export namespace Prisma {
   export type ReportPeriodCreateInput = {
     id?: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    reprtCode: string
     periodType: string
     reportName?: string | null
     reportDate?: Date | string | null
@@ -10516,7 +10635,7 @@ export namespace Prisma {
   export type ReportPeriodUncheckedCreateInput = {
     id?: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    reprtCode: string
     periodType: string
     reportName?: string | null
     reportDate?: Date | string | null
@@ -10526,7 +10645,7 @@ export namespace Prisma {
   export type ReportPeriodUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     periodType?: StringFieldUpdateOperationsInput | string
     reportName?: NullableStringFieldUpdateOperationsInput | string | null
     reportDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10536,7 +10655,7 @@ export namespace Prisma {
   export type ReportPeriodUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     periodType?: StringFieldUpdateOperationsInput | string
     reportName?: NullableStringFieldUpdateOperationsInput | string | null
     reportDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10546,7 +10665,7 @@ export namespace Prisma {
   export type ReportPeriodCreateManyInput = {
     id?: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    reprtCode: string
     periodType: string
     reportName?: string | null
     reportDate?: Date | string | null
@@ -10555,7 +10674,7 @@ export namespace Prisma {
   export type ReportPeriodUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     periodType?: StringFieldUpdateOperationsInput | string
     reportName?: NullableStringFieldUpdateOperationsInput | string | null
     reportDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10564,7 +10683,7 @@ export namespace Prisma {
   export type ReportPeriodUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     periodType?: StringFieldUpdateOperationsInput | string
     reportName?: NullableStringFieldUpdateOperationsInput | string | null
     reportDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10575,6 +10694,7 @@ export namespace Prisma {
     itemCode: string
     itemName: string
     statementType: string
+    fsType?: string | null
     unit?: string | null
     financials?: FinancialCreateNestedManyWithoutItemInput
   }
@@ -10584,6 +10704,7 @@ export namespace Prisma {
     itemCode: string
     itemName: string
     statementType: string
+    fsType?: string | null
     unit?: string | null
     financials?: FinancialUncheckedCreateNestedManyWithoutItemInput
   }
@@ -10593,6 +10714,7 @@ export namespace Prisma {
     itemCode?: StringFieldUpdateOperationsInput | string
     itemName?: StringFieldUpdateOperationsInput | string
     statementType?: StringFieldUpdateOperationsInput | string
+    fsType?: NullableStringFieldUpdateOperationsInput | string | null
     unit?: NullableStringFieldUpdateOperationsInput | string | null
     financials?: FinancialUpdateManyWithoutItemNestedInput
   }
@@ -10602,6 +10724,7 @@ export namespace Prisma {
     itemCode?: StringFieldUpdateOperationsInput | string
     itemName?: StringFieldUpdateOperationsInput | string
     statementType?: StringFieldUpdateOperationsInput | string
+    fsType?: NullableStringFieldUpdateOperationsInput | string | null
     unit?: NullableStringFieldUpdateOperationsInput | string | null
     financials?: FinancialUncheckedUpdateManyWithoutItemNestedInput
   }
@@ -10611,6 +10734,7 @@ export namespace Prisma {
     itemCode: string
     itemName: string
     statementType: string
+    fsType?: string | null
     unit?: string | null
   }
 
@@ -10619,6 +10743,7 @@ export namespace Prisma {
     itemCode?: StringFieldUpdateOperationsInput | string
     itemName?: StringFieldUpdateOperationsInput | string
     statementType?: StringFieldUpdateOperationsInput | string
+    fsType?: NullableStringFieldUpdateOperationsInput | string | null
     unit?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -10627,11 +10752,14 @@ export namespace Prisma {
     itemCode?: StringFieldUpdateOperationsInput | string
     itemName?: StringFieldUpdateOperationsInput | string
     statementType?: StringFieldUpdateOperationsInput | string
+    fsType?: NullableStringFieldUpdateOperationsInput | string | null
     unit?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FinancialCreateInput = {
     id?: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -10646,6 +10774,8 @@ export namespace Prisma {
     companyId: bigint | number
     periodId: bigint | number
     itemId: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -10654,6 +10784,8 @@ export namespace Prisma {
 
   export type FinancialUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -10668,6 +10800,8 @@ export namespace Prisma {
     companyId?: BigIntFieldUpdateOperationsInput | bigint | number
     periodId?: BigIntFieldUpdateOperationsInput | bigint | number
     itemId?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -10679,6 +10813,8 @@ export namespace Prisma {
     companyId: bigint | number
     periodId: bigint | number
     itemId: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -10687,6 +10823,8 @@ export namespace Prisma {
 
   export type FinancialUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -10698,6 +10836,8 @@ export namespace Prisma {
     companyId?: BigIntFieldUpdateOperationsInput | bigint | number
     periodId?: BigIntFieldUpdateOperationsInput | bigint | number
     itemId?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -10709,7 +10849,7 @@ export namespace Prisma {
     lastErrorAt?: Date | string | null
     lastErrorMsg?: string | null
     progressYear?: number | null
-    progressQuarter?: number | null
+    reprtCode?: string | null
     status?: string
     company: CompanyCreateNestedOneWithoutIngestStatusInput
   }
@@ -10720,7 +10860,7 @@ export namespace Prisma {
     lastErrorAt?: Date | string | null
     lastErrorMsg?: string | null
     progressYear?: number | null
-    progressQuarter?: number | null
+    reprtCode?: string | null
     status?: string
   }
 
@@ -10729,7 +10869,7 @@ export namespace Prisma {
     lastErrorAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastErrorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     progressYear?: NullableIntFieldUpdateOperationsInput | number | null
-    progressQuarter?: NullableIntFieldUpdateOperationsInput | number | null
+    reprtCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     company?: CompanyUpdateOneRequiredWithoutIngestStatusNestedInput
   }
@@ -10740,7 +10880,7 @@ export namespace Prisma {
     lastErrorAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastErrorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     progressYear?: NullableIntFieldUpdateOperationsInput | number | null
-    progressQuarter?: NullableIntFieldUpdateOperationsInput | number | null
+    reprtCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
   }
 
@@ -10750,7 +10890,7 @@ export namespace Prisma {
     lastErrorAt?: Date | string | null
     lastErrorMsg?: string | null
     progressYear?: number | null
-    progressQuarter?: number | null
+    reprtCode?: string | null
     status?: string
   }
 
@@ -10759,7 +10899,7 @@ export namespace Prisma {
     lastErrorAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastErrorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     progressYear?: NullableIntFieldUpdateOperationsInput | number | null
-    progressQuarter?: NullableIntFieldUpdateOperationsInput | number | null
+    reprtCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
   }
 
@@ -10769,14 +10909,15 @@ export namespace Prisma {
     lastErrorAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastErrorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     progressYear?: NullableIntFieldUpdateOperationsInput | number | null
-    progressQuarter?: NullableIntFieldUpdateOperationsInput | number | null
+    reprtCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
   }
 
   export type IngestJobCreateInput = {
     id?: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
+    reprtCode: string
     priority?: number
     status?: string
     retries?: number
@@ -10791,7 +10932,8 @@ export namespace Prisma {
     id?: bigint | number
     companyId: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
+    reprtCode: string
     priority?: number
     status?: string
     retries?: number
@@ -10804,7 +10946,8 @@ export namespace Prisma {
   export type IngestJobUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    fiscalMonth?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     priority?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     retries?: IntFieldUpdateOperationsInput | number
@@ -10819,7 +10962,8 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyId?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    fiscalMonth?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     priority?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     retries?: IntFieldUpdateOperationsInput | number
@@ -10833,7 +10977,8 @@ export namespace Prisma {
     id?: bigint | number
     companyId: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
+    reprtCode: string
     priority?: number
     status?: string
     retries?: number
@@ -10845,7 +10990,8 @@ export namespace Prisma {
   export type IngestJobUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    fiscalMonth?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     priority?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     retries?: IntFieldUpdateOperationsInput | number
@@ -10858,7 +11004,8 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyId?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    fiscalMonth?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     priority?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     retries?: IntFieldUpdateOperationsInput | number
@@ -11074,6 +11221,8 @@ export namespace Prisma {
     name?: SortOrder
     market?: SortOrder
     sector?: SortOrder
+    corpCode?: SortOrder
+    state?: SortOrder
     listedAt?: SortOrder
     marketCap?: SortOrder
     marketCapAt?: SortOrder
@@ -11092,6 +11241,8 @@ export namespace Prisma {
     name?: SortOrder
     market?: SortOrder
     sector?: SortOrder
+    corpCode?: SortOrder
+    state?: SortOrder
     listedAt?: SortOrder
     marketCap?: SortOrder
     marketCapAt?: SortOrder
@@ -11105,6 +11256,8 @@ export namespace Prisma {
     name?: SortOrder
     market?: SortOrder
     sector?: SortOrder
+    corpCode?: SortOrder
+    state?: SortOrder
     listedAt?: SortOrder
     marketCap?: SortOrder
     marketCapAt?: SortOrder
@@ -11224,9 +11377,9 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type ReportPeriodFiscalYearFiscalQuarterPeriodTypeReportNameCompoundUniqueInput = {
+  export type ReportPeriodFiscalYearReprtCodePeriodTypeReportNameCompoundUniqueInput = {
     fiscalYear: number
-    fiscalQuarter: number
+    reprtCode: string
     periodType: string
     reportName: string
   }
@@ -11234,7 +11387,7 @@ export namespace Prisma {
   export type ReportPeriodCountOrderByAggregateInput = {
     id?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    reprtCode?: SortOrder
     periodType?: SortOrder
     reportName?: SortOrder
     reportDate?: SortOrder
@@ -11243,13 +11396,12 @@ export namespace Prisma {
   export type ReportPeriodAvgOrderByAggregateInput = {
     id?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
   }
 
   export type ReportPeriodMaxOrderByAggregateInput = {
     id?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    reprtCode?: SortOrder
     periodType?: SortOrder
     reportName?: SortOrder
     reportDate?: SortOrder
@@ -11258,7 +11410,7 @@ export namespace Prisma {
   export type ReportPeriodMinOrderByAggregateInput = {
     id?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    reprtCode?: SortOrder
     periodType?: SortOrder
     reportName?: SortOrder
     reportDate?: SortOrder
@@ -11267,7 +11419,6 @@ export namespace Prisma {
   export type ReportPeriodSumOrderByAggregateInput = {
     id?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -11291,6 +11442,7 @@ export namespace Prisma {
     itemCode?: SortOrder
     itemName?: SortOrder
     statementType?: SortOrder
+    fsType?: SortOrder
     unit?: SortOrder
   }
 
@@ -11303,6 +11455,7 @@ export namespace Prisma {
     itemCode?: SortOrder
     itemName?: SortOrder
     statementType?: SortOrder
+    fsType?: SortOrder
     unit?: SortOrder
   }
 
@@ -11311,6 +11464,7 @@ export namespace Prisma {
     itemCode?: SortOrder
     itemName?: SortOrder
     statementType?: SortOrder
+    fsType?: SortOrder
     unit?: SortOrder
   }
 
@@ -11344,10 +11498,18 @@ export namespace Prisma {
     isNot?: FinancialItemWhereInput
   }
 
-  export type FinancialCompanyIdPeriodIdItemIdCompoundUniqueInput = {
+  export type FinancialCompanyIdPeriodIdItemIdMarketFiscalYearCompoundUniqueInput = {
     companyId: bigint | number
     periodId: bigint | number
     itemId: bigint | number
+    market: string
+    fiscalYear: number
+  }
+
+  export type FinancialIdMarketFiscalYearCompoundUniqueInput = {
+    id: bigint | number
+    market: string
+    fiscalYear: number
   }
 
   export type FinancialCountOrderByAggregateInput = {
@@ -11355,6 +11517,8 @@ export namespace Prisma {
     companyId?: SortOrder
     periodId?: SortOrder
     itemId?: SortOrder
+    market?: SortOrder
+    fiscalYear?: SortOrder
     value?: SortOrder
     currency?: SortOrder
     source?: SortOrder
@@ -11366,6 +11530,7 @@ export namespace Prisma {
     companyId?: SortOrder
     periodId?: SortOrder
     itemId?: SortOrder
+    fiscalYear?: SortOrder
     value?: SortOrder
   }
 
@@ -11374,6 +11539,8 @@ export namespace Prisma {
     companyId?: SortOrder
     periodId?: SortOrder
     itemId?: SortOrder
+    market?: SortOrder
+    fiscalYear?: SortOrder
     value?: SortOrder
     currency?: SortOrder
     source?: SortOrder
@@ -11385,6 +11552,8 @@ export namespace Prisma {
     companyId?: SortOrder
     periodId?: SortOrder
     itemId?: SortOrder
+    market?: SortOrder
+    fiscalYear?: SortOrder
     value?: SortOrder
     currency?: SortOrder
     source?: SortOrder
@@ -11396,6 +11565,7 @@ export namespace Prisma {
     companyId?: SortOrder
     periodId?: SortOrder
     itemId?: SortOrder
+    fiscalYear?: SortOrder
     value?: SortOrder
   }
 
@@ -11432,14 +11602,13 @@ export namespace Prisma {
     lastErrorAt?: SortOrder
     lastErrorMsg?: SortOrder
     progressYear?: SortOrder
-    progressQuarter?: SortOrder
+    reprtCode?: SortOrder
     status?: SortOrder
   }
 
   export type CompanyIngestStatusAvgOrderByAggregateInput = {
     companyId?: SortOrder
     progressYear?: SortOrder
-    progressQuarter?: SortOrder
   }
 
   export type CompanyIngestStatusMaxOrderByAggregateInput = {
@@ -11448,7 +11617,7 @@ export namespace Prisma {
     lastErrorAt?: SortOrder
     lastErrorMsg?: SortOrder
     progressYear?: SortOrder
-    progressQuarter?: SortOrder
+    reprtCode?: SortOrder
     status?: SortOrder
   }
 
@@ -11458,14 +11627,13 @@ export namespace Prisma {
     lastErrorAt?: SortOrder
     lastErrorMsg?: SortOrder
     progressYear?: SortOrder
-    progressQuarter?: SortOrder
+    reprtCode?: SortOrder
     status?: SortOrder
   }
 
   export type CompanyIngestStatusSumOrderByAggregateInput = {
     companyId?: SortOrder
     progressYear?: SortOrder
-    progressQuarter?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11494,17 +11662,18 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type IngestJobCompanyIdFiscalYearFiscalQuarterCompoundUniqueInput = {
+  export type IngestJobCompanyIdFiscalYearFiscalMonthCompoundUniqueInput = {
     companyId: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
   }
 
   export type IngestJobCountOrderByAggregateInput = {
     id?: SortOrder
     companyId?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    fiscalMonth?: SortOrder
+    reprtCode?: SortOrder
     priority?: SortOrder
     status?: SortOrder
     retries?: SortOrder
@@ -11517,7 +11686,7 @@ export namespace Prisma {
     id?: SortOrder
     companyId?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    fiscalMonth?: SortOrder
     priority?: SortOrder
     retries?: SortOrder
   }
@@ -11526,7 +11695,8 @@ export namespace Prisma {
     id?: SortOrder
     companyId?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    fiscalMonth?: SortOrder
+    reprtCode?: SortOrder
     priority?: SortOrder
     status?: SortOrder
     retries?: SortOrder
@@ -11539,7 +11709,8 @@ export namespace Prisma {
     id?: SortOrder
     companyId?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    fiscalMonth?: SortOrder
+    reprtCode?: SortOrder
     priority?: SortOrder
     status?: SortOrder
     retries?: SortOrder
@@ -11552,7 +11723,7 @@ export namespace Prisma {
     id?: SortOrder
     companyId?: SortOrder
     fiscalYear?: SortOrder
-    fiscalQuarter?: SortOrder
+    fiscalMonth?: SortOrder
     priority?: SortOrder
     retries?: SortOrder
   }
@@ -12277,6 +12448,8 @@ export namespace Prisma {
 
   export type FinancialCreateWithoutCompanyInput = {
     id?: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -12289,6 +12462,8 @@ export namespace Prisma {
     id?: bigint | number
     periodId: bigint | number
     itemId: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -12310,7 +12485,7 @@ export namespace Prisma {
     lastErrorAt?: Date | string | null
     lastErrorMsg?: string | null
     progressYear?: number | null
-    progressQuarter?: number | null
+    reprtCode?: string | null
     status?: string
   }
 
@@ -12319,7 +12494,7 @@ export namespace Prisma {
     lastErrorAt?: Date | string | null
     lastErrorMsg?: string | null
     progressYear?: number | null
-    progressQuarter?: number | null
+    reprtCode?: string | null
     status?: string
   }
 
@@ -12331,7 +12506,8 @@ export namespace Prisma {
   export type IngestJobCreateWithoutCompanyInput = {
     id?: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
+    reprtCode: string
     priority?: number
     status?: string
     retries?: number
@@ -12344,7 +12520,8 @@ export namespace Prisma {
   export type IngestJobUncheckedCreateWithoutCompanyInput = {
     id?: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
+    reprtCode: string
     priority?: number
     status?: string
     retries?: number
@@ -12388,6 +12565,8 @@ export namespace Prisma {
     companyId?: BigIntFilter<"Financial"> | bigint | number
     periodId?: BigIntFilter<"Financial"> | bigint | number
     itemId?: BigIntFilter<"Financial"> | bigint | number
+    market?: StringFilter<"Financial"> | string
+    fiscalYear?: IntFilter<"Financial"> | number
     value?: DecimalFilter<"Financial"> | Decimal | DecimalJsLike | number | string
     currency?: StringFilter<"Financial"> | string
     source?: StringFilter<"Financial"> | string
@@ -12410,7 +12589,7 @@ export namespace Prisma {
     lastErrorAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastErrorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     progressYear?: NullableIntFieldUpdateOperationsInput | number | null
-    progressQuarter?: NullableIntFieldUpdateOperationsInput | number | null
+    reprtCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
   }
 
@@ -12419,7 +12598,7 @@ export namespace Prisma {
     lastErrorAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastErrorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     progressYear?: NullableIntFieldUpdateOperationsInput | number | null
-    progressQuarter?: NullableIntFieldUpdateOperationsInput | number | null
+    reprtCode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
   }
 
@@ -12446,7 +12625,8 @@ export namespace Prisma {
     id?: BigIntFilter<"IngestJob"> | bigint | number
     companyId?: BigIntFilter<"IngestJob"> | bigint | number
     fiscalYear?: IntFilter<"IngestJob"> | number
-    fiscalQuarter?: IntFilter<"IngestJob"> | number
+    fiscalMonth?: IntFilter<"IngestJob"> | number
+    reprtCode?: StringFilter<"IngestJob"> | string
     priority?: IntFilter<"IngestJob"> | number
     status?: StringFilter<"IngestJob"> | string
     retries?: IntFilter<"IngestJob"> | number
@@ -12457,6 +12637,8 @@ export namespace Prisma {
 
   export type FinancialCreateWithoutPeriodInput = {
     id?: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -12469,6 +12651,8 @@ export namespace Prisma {
     id?: bigint | number
     companyId: bigint | number
     itemId: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -12503,6 +12687,8 @@ export namespace Prisma {
 
   export type FinancialCreateWithoutItemInput = {
     id?: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -12515,6 +12701,8 @@ export namespace Prisma {
     id?: bigint | number
     companyId: bigint | number
     periodId: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -12553,6 +12741,8 @@ export namespace Prisma {
     name: string
     market: string
     sector?: string | null
+    corpCode?: string | null
+    state?: string
     listedAt?: Date | string | null
     marketCap?: bigint | number | null
     marketCapAt?: Date | string | null
@@ -12568,6 +12758,8 @@ export namespace Prisma {
     name: string
     market: string
     sector?: string | null
+    corpCode?: string | null
+    state?: string
     listedAt?: Date | string | null
     marketCap?: bigint | number | null
     marketCapAt?: Date | string | null
@@ -12585,7 +12777,7 @@ export namespace Prisma {
   export type ReportPeriodCreateWithoutFinancialsInput = {
     id?: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    reprtCode: string
     periodType: string
     reportName?: string | null
     reportDate?: Date | string | null
@@ -12594,7 +12786,7 @@ export namespace Prisma {
   export type ReportPeriodUncheckedCreateWithoutFinancialsInput = {
     id?: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    reprtCode: string
     periodType: string
     reportName?: string | null
     reportDate?: Date | string | null
@@ -12610,6 +12802,7 @@ export namespace Prisma {
     itemCode: string
     itemName: string
     statementType: string
+    fsType?: string | null
     unit?: string | null
   }
 
@@ -12618,6 +12811,7 @@ export namespace Prisma {
     itemCode: string
     itemName: string
     statementType: string
+    fsType?: string | null
     unit?: string | null
   }
 
@@ -12643,6 +12837,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     sector?: NullableStringFieldUpdateOperationsInput | string | null
+    corpCode?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: StringFieldUpdateOperationsInput | string
     listedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     marketCap?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     marketCapAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12658,6 +12854,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     sector?: NullableStringFieldUpdateOperationsInput | string | null
+    corpCode?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: StringFieldUpdateOperationsInput | string
     listedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     marketCap?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     marketCapAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12681,7 +12879,7 @@ export namespace Prisma {
   export type ReportPeriodUpdateWithoutFinancialsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     periodType?: StringFieldUpdateOperationsInput | string
     reportName?: NullableStringFieldUpdateOperationsInput | string | null
     reportDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12690,7 +12888,7 @@ export namespace Prisma {
   export type ReportPeriodUncheckedUpdateWithoutFinancialsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     periodType?: StringFieldUpdateOperationsInput | string
     reportName?: NullableStringFieldUpdateOperationsInput | string | null
     reportDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12712,6 +12910,7 @@ export namespace Prisma {
     itemCode?: StringFieldUpdateOperationsInput | string
     itemName?: StringFieldUpdateOperationsInput | string
     statementType?: StringFieldUpdateOperationsInput | string
+    fsType?: NullableStringFieldUpdateOperationsInput | string | null
     unit?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -12720,6 +12919,7 @@ export namespace Prisma {
     itemCode?: StringFieldUpdateOperationsInput | string
     itemName?: StringFieldUpdateOperationsInput | string
     statementType?: StringFieldUpdateOperationsInput | string
+    fsType?: NullableStringFieldUpdateOperationsInput | string | null
     unit?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -12729,6 +12929,8 @@ export namespace Prisma {
     name: string
     market: string
     sector?: string | null
+    corpCode?: string | null
+    state?: string
     listedAt?: Date | string | null
     marketCap?: bigint | number | null
     marketCapAt?: Date | string | null
@@ -12744,6 +12946,8 @@ export namespace Prisma {
     name: string
     market: string
     sector?: string | null
+    corpCode?: string | null
+    state?: string
     listedAt?: Date | string | null
     marketCap?: bigint | number | null
     marketCapAt?: Date | string | null
@@ -12775,6 +12979,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     sector?: NullableStringFieldUpdateOperationsInput | string | null
+    corpCode?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: StringFieldUpdateOperationsInput | string
     listedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     marketCap?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     marketCapAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12790,6 +12996,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     sector?: NullableStringFieldUpdateOperationsInput | string | null
+    corpCode?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: StringFieldUpdateOperationsInput | string
     listedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     marketCap?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     marketCapAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12805,6 +13013,8 @@ export namespace Prisma {
     name: string
     market: string
     sector?: string | null
+    corpCode?: string | null
+    state?: string
     listedAt?: Date | string | null
     marketCap?: bigint | number | null
     marketCapAt?: Date | string | null
@@ -12820,6 +13030,8 @@ export namespace Prisma {
     name: string
     market: string
     sector?: string | null
+    corpCode?: string | null
+    state?: string
     listedAt?: Date | string | null
     marketCap?: bigint | number | null
     marketCapAt?: Date | string | null
@@ -12875,6 +13087,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     sector?: NullableStringFieldUpdateOperationsInput | string | null
+    corpCode?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: StringFieldUpdateOperationsInput | string
     listedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     marketCap?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     marketCapAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12890,6 +13104,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     sector?: NullableStringFieldUpdateOperationsInput | string | null
+    corpCode?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: StringFieldUpdateOperationsInput | string
     listedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     marketCap?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     marketCapAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12929,7 +13145,8 @@ export namespace Prisma {
   export type IngestJobCreateWithoutLogsInput = {
     id?: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
+    reprtCode: string
     priority?: number
     status?: string
     retries?: number
@@ -12943,7 +13160,8 @@ export namespace Prisma {
     id?: bigint | number
     companyId: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
+    reprtCode: string
     priority?: number
     status?: string
     retries?: number
@@ -12971,7 +13189,8 @@ export namespace Prisma {
   export type IngestJobUpdateWithoutLogsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    fiscalMonth?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     priority?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     retries?: IntFieldUpdateOperationsInput | number
@@ -12985,7 +13204,8 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyId?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    fiscalMonth?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     priority?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     retries?: IntFieldUpdateOperationsInput | number
@@ -12998,6 +13218,8 @@ export namespace Prisma {
     id?: bigint | number
     periodId: bigint | number
     itemId: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -13007,7 +13229,8 @@ export namespace Prisma {
   export type IngestJobCreateManyCompanyInput = {
     id?: bigint | number
     fiscalYear: number
-    fiscalQuarter: number
+    fiscalMonth: number
+    reprtCode: string
     priority?: number
     status?: string
     retries?: number
@@ -13018,6 +13241,8 @@ export namespace Prisma {
 
   export type FinancialUpdateWithoutCompanyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -13030,6 +13255,8 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     periodId?: BigIntFieldUpdateOperationsInput | bigint | number
     itemId?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -13040,6 +13267,8 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     periodId?: BigIntFieldUpdateOperationsInput | bigint | number
     itemId?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -13049,7 +13278,8 @@ export namespace Prisma {
   export type IngestJobUpdateWithoutCompanyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    fiscalMonth?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     priority?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     retries?: IntFieldUpdateOperationsInput | number
@@ -13062,7 +13292,8 @@ export namespace Prisma {
   export type IngestJobUncheckedUpdateWithoutCompanyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    fiscalMonth?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     priority?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     retries?: IntFieldUpdateOperationsInput | number
@@ -13075,7 +13306,8 @@ export namespace Prisma {
   export type IngestJobUncheckedUpdateManyWithoutCompanyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     fiscalYear?: IntFieldUpdateOperationsInput | number
-    fiscalQuarter?: IntFieldUpdateOperationsInput | number
+    fiscalMonth?: IntFieldUpdateOperationsInput | number
+    reprtCode?: StringFieldUpdateOperationsInput | string
     priority?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     retries?: IntFieldUpdateOperationsInput | number
@@ -13088,6 +13320,8 @@ export namespace Prisma {
     id?: bigint | number
     companyId: bigint | number
     itemId: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -13096,6 +13330,8 @@ export namespace Prisma {
 
   export type FinancialUpdateWithoutPeriodInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -13108,6 +13344,8 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyId?: BigIntFieldUpdateOperationsInput | bigint | number
     itemId?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -13118,6 +13356,8 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyId?: BigIntFieldUpdateOperationsInput | bigint | number
     itemId?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -13128,6 +13368,8 @@ export namespace Prisma {
     id?: bigint | number
     companyId: bigint | number
     periodId: bigint | number
+    market: string
+    fiscalYear: number
     value: Decimal | DecimalJsLike | number | string
     currency?: string
     source?: string
@@ -13136,6 +13378,8 @@ export namespace Prisma {
 
   export type FinancialUpdateWithoutItemInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -13148,6 +13392,8 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyId?: BigIntFieldUpdateOperationsInput | bigint | number
     periodId?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string
@@ -13158,6 +13404,8 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyId?: BigIntFieldUpdateOperationsInput | bigint | number
     periodId?: BigIntFieldUpdateOperationsInput | bigint | number
+    market?: StringFieldUpdateOperationsInput | string
+    fiscalYear?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
     source?: StringFieldUpdateOperationsInput | string

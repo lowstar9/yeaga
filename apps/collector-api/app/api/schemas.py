@@ -26,3 +26,27 @@ class CompanyListOut(BaseModel):
     # Paged list response for Company search.
     items: list[CompanyOut]
     total: int
+
+
+class NewReportSummary(BaseModel):
+    tickers: int
+    annual: int
+    half: int
+    quarter: int
+
+
+class NewReportItemIn(BaseModel):
+    company_id: int
+    fiscal_year: int
+    fiscal_month: int
+    reprt_code: str
+
+
+class NewReportEnqueueRequest(BaseModel):
+    summary: NewReportSummary
+    items: list[NewReportItemIn]
+
+
+class NewReportEnqueueResponse(BaseModel):
+    summary: NewReportSummary
+    created: int

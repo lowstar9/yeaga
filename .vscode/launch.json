@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "FastAPI Debug",
+      "type": "python",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["app.main_debug:app", "--reload", "--port", "8000"],
+      "cwd": "${workspaceFolder}/apps/collector-api",
+      "envFile": "${workspaceFolder}/.env",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/apps/collector-api"
+      }
+    }
+  ]
+}

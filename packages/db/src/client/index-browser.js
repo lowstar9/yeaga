@@ -128,6 +128,8 @@ exports.Prisma.CompanyScalarFieldEnum = {
   name: 'name',
   market: 'market',
   sector: 'sector',
+  corpCode: 'corpCode',
+  state: 'state',
   listedAt: 'listedAt',
   marketCap: 'marketCap',
   marketCapAt: 'marketCapAt',
@@ -138,7 +140,7 @@ exports.Prisma.CompanyScalarFieldEnum = {
 exports.Prisma.ReportPeriodScalarFieldEnum = {
   id: 'id',
   fiscalYear: 'fiscalYear',
-  fiscalQuarter: 'fiscalQuarter',
+  reprtCode: 'reprtCode',
   periodType: 'periodType',
   reportName: 'reportName',
   reportDate: 'reportDate'
@@ -149,6 +151,7 @@ exports.Prisma.FinancialItemScalarFieldEnum = {
   itemCode: 'itemCode',
   itemName: 'itemName',
   statementType: 'statementType',
+  fsType: 'fsType',
   unit: 'unit'
 };
 
@@ -157,6 +160,8 @@ exports.Prisma.FinancialScalarFieldEnum = {
   companyId: 'companyId',
   periodId: 'periodId',
   itemId: 'itemId',
+  market: 'market',
+  fiscalYear: 'fiscalYear',
   value: 'value',
   currency: 'currency',
   source: 'source',
@@ -169,7 +174,7 @@ exports.Prisma.CompanyIngestStatusScalarFieldEnum = {
   lastErrorAt: 'lastErrorAt',
   lastErrorMsg: 'lastErrorMsg',
   progressYear: 'progressYear',
-  progressQuarter: 'progressQuarter',
+  reprtCode: 'reprtCode',
   status: 'status'
 };
 
@@ -177,7 +182,8 @@ exports.Prisma.IngestJobScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
   fiscalYear: 'fiscalYear',
-  fiscalQuarter: 'fiscalQuarter',
+  fiscalMonth: 'fiscalMonth',
+  reprtCode: 'reprtCode',
   priority: 'priority',
   status: 'status',
   retries: 'retries',

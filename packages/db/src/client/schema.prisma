@@ -9,106 +9,194 @@ datasource db {
 }
 
 model Company {
+  // 회사 PK
   id          BigInt    @id @default(autoincrement())
+  // 종목 코드
   ticker      String    @unique @db.VarChar(12)
+  // 회사명
   name        String    @db.VarChar(128)
+  // 시장 구분 (KOSPI/KOSDAQ 등)
   market      String    @db.VarChar(16)
+  // 업종명
   sector      String?   @db.VarChar(128)
+  // DART 고유번호
+  corpCode    String?   @db.VarChar(8)
+  // 상장 상태 플래그
+  state       String    @default("1") @db.VarChar(1)
+  // 상장일
   listedAt    DateTime?
+  // 시가총액
   marketCap   BigInt?
+  // 시가총액 기준일
   marketCapAt DateTime?
+  // 생성 시각
   createdAt   DateTime  @default(now())
+  // 수정 시각
   updatedAt   DateTime  @default(now())
 
+  // 재무 데이터 관계
   financials   Financial[]
+  // 수집 상태(단일)
   ingestStatus CompanyIngestStatus?
+  // 수집 작업 목록
   ingestJobs   IngestJob[]
 }
 
 model ReportPeriod {
-  id            BigInt    @id @default(autoincrement())
-  fiscalYear    Int
-  fiscalQuarter Int
-  periodType    String    @db.VarChar(16)
-  reportName    String?   @db.VarChar(64)
-  reportDate    DateTime?
+  // 기간 PK
+  id         BigInt    @id @default(autoincrement())
+  // 회계연도
+  fiscalYear Int
+  // 보고서 코드 (reprt_code)
+  reprtCode  String    @db.VarChar(8)
+  // 기간 타입(기간 구분자)
+  periodType String    @db.VarChar(16)
+  // 보고서명
+  reportName String?   @db.VarChar(64)
+  // 보고서 접수일
+  reportDate DateTime?
 
+  // 재무 데이터 관계
   financials Financial[]
 
-  @@unique([fiscalYear, fiscalQuarter, periodType, reportName])
+  // 연도+보고서코드+기간타입+보고서명 유니크
+  @@unique([fiscalYear, reprtCode, periodType, reportName])
 }
 
 model FinancialItem {
+  // 항목 PK
   id            BigInt  @id @default(autoincrement())
+  // 항목 코드
   itemCode      String  @unique @db.VarChar(64)
+  // 항목명
   itemName      String  @db.VarChar(128)
+  // 재무제표 구분(계정과목 분류)
   statementType String  @db.VarChar(16)
+  // 재무제표 구분: CFS(연결), OFS(별도)
+  // dart.list()에는 구분값이 없어 finstate() 결과의 fs_div로 확정됨.
+  fsType        String? @db.VarChar(8)
+  // 단위
   unit          String? @db.VarChar(16)
 
+  // 재무 데이터 관계
   financials Financial[]
 }
 
 model Financial {
-  id        BigInt   @id @default(autoincrement())
-  companyId BigInt
-  periodId  BigInt
-  itemId    BigInt
-  value     Decimal  @db.Decimal(20, 2)
-  currency  String   @default("KRW") @db.VarChar(8)
-  source    String   @default("opendart") @db.VarChar(32)
-  createdAt DateTime @default(now())
+  // 재무 데이터 PK (복합 PK의 일부)
+  id         BigInt   @default(autoincrement())
+  // 회사 FK
+  companyId  BigInt
+  // 기간 FK
+  periodId   BigInt
+  // 항목 FK
+  itemId     BigInt
+  // 시장 구분
+  market     String   @db.VarChar(16)
+  // 회계연도
+  fiscalYear Int
+  // 값
+  value      Decimal  @db.Decimal(20, 2)
+  // 통화
+  currency   String   @default("KRW") @db.VarChar(8)
+  // 데이터 출처
+  source     String   @default("opendart") @db.VarChar(32)
+  // 생성 시각
+  createdAt  DateTime @default(now())
 
+  // 회사 관계
   company Company       @relation(fields: [companyId], references: [id])
+  // 기간 관계
   period  ReportPeriod  @relation(fields: [periodId], references: [id])
+  // 항목 관계
   item    FinancialItem @relation(fields: [itemId], references: [id])
 
-  @@unique([companyId, periodId, itemId])
+  // PK: id+market+fiscalYear
+  @@id([id, market, fiscalYear])
+  // 회사+기간+항목+시장+연도 유니크
+  @@unique([companyId, periodId, itemId, market, fiscalYear])
+  // 조회 인덱스(회사/기간)
   @@index([companyId, periodId])
+  // 조회 인덱스(시장/연도)
+  @@index([market, fiscalYear])
 }
 
 model CompanyIngestStatus {
-  companyId       BigInt    @id
-  lastSuccessAt   DateTime?
-  lastErrorAt     DateTime?
-  lastErrorMsg    String?
-  progressYear    Int?
-  progressQuarter Int?
-  status          String    @default("idle") @db.VarChar(16)
+  // 회사 PK/FK
+  companyId     BigInt    @id
+  // 마지막 성공 시각
+  lastSuccessAt DateTime?
+  // 마지막 실패 시각
+  lastErrorAt   DateTime?
+  // 마지막 오류 메시지
+  lastErrorMsg  String?
+  // 진행 연도
+  progressYear  Int?
+  // 진행 보고서 코드
+  reprtCode     String?   @db.VarChar(8)
+  // 상태
+  status        String    @default("idle") @db.VarChar(16)
 
+  // 회사 관계
   company Company @relation(fields: [companyId], references: [id])
 }
 
 model IngestJob {
-  id            BigInt   @id @default(autoincrement())
-  companyId     BigInt
-  fiscalYear    Int
-  fiscalQuarter Int
-  priority      Int      @default(1000)
-  status        String   @default("pending") @db.VarChar(16)
-  retries       Int      @default(0)
-  lastErrorMsg  String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @default(now())
+  // 작업 PK
+  id           BigInt   @id @default(autoincrement())
+  // 회사 FK
+  companyId    BigInt
+  // 회계연도
+  fiscalYear   Int
+  // 공시 기준월 (월 기준으로 동일 연도 내 중복 공시 구분)
+  fiscalMonth  Int
+  // 보고서 코드 (reprt_code: 11011/11012/11013/11014)
+  reprtCode    String   @db.VarChar(8)
+  // 우선순위(낮을수록 우선)
+  priority     Int      @default(1000)
+  // 상태
+  status       String   @default("pending") @db.VarChar(16)
+  // 재시도 횟수
+  retries      Int      @default(0)
+  // 마지막 오류 메시지
+  lastErrorMsg String?
+  // 생성 시각
+  createdAt    DateTime @default(now())
+  // 수정 시각
+  updatedAt    DateTime @default(now())
 
+  // 회사 관계
   company Company     @relation(fields: [companyId], references: [id])
+  // 로그 관계
   logs    IngestLog[]
 
-  @@unique([companyId, fiscalYear, fiscalQuarter])
+  // 회사+연도+발행월 유니크
+  @@unique([companyId, fiscalYear, fiscalMonth])
+  // 상태/우선순위 인덱스
   @@index([status, priority, createdAt])
 }
 
 model IngestControl {
+  // 단일 레코드 PK
   id        Int      @id @default(1)
+  // 동작 상태(run/stop 등)
   runState  String   @default("run") @db.VarChar(16)
+  // 수정 시각
   updatedAt DateTime @default(now())
 }
 
 model IngestLog {
+  // 로그 PK
   id        BigInt   @id @default(autoincrement())
+  // 작업 FK
   jobId     BigInt?
+  // 로그 레벨
   level     String   @db.VarChar(8)
+  // 메시지
   message   String
+  // 생성 시각
   createdAt DateTime @default(now())
 
+  // 작업 관계
   job IngestJob? @relation(fields: [jobId], references: [id])
 }
