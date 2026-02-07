@@ -2,6 +2,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Companies from "./pages/Companies";
 import Jobs from "./pages/Jobs";
+import Backup from "./pages/Backup";
 
 export default function App() {
   return (
@@ -17,6 +18,9 @@ export default function App() {
           <Link to="/jobs" className="hover:text-black/60">
             Jobs
           </Link>
+          <Link to="/backup" className="hover:text-black/60">
+            Backup
+          </Link>
         </div>
       </nav>
       <main className="mx-auto max-w-5xl px-6 py-10">
@@ -24,6 +28,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/companies" element={<Companies />} />
           <Route path="/jobs" element={<Jobs />} />
+          <Route path="/backup" element={<Backup />} />
         </Routes>
       </main>
     </div>

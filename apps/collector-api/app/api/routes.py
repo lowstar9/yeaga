@@ -24,6 +24,7 @@ from app.services.company_sync import sync_companies, update_market_caps
 from app.services.job_worker import run_once
 from app.services.new_reports import enqueue_report_items, enqueue_new_reports, find_new_reports
 from app.services.report_scan_manager import scan_manager
+from app.services.db_backup import create_backup, list_backups, read_logs, restore_backup
 from app.services.report_scan_worker import run_scan_job
 
 router = APIRouter()
@@ -178,3 +179,26 @@ async def ws_new_reports_progress(websocket: WebSocket, job_id: str):
         pass
     finally:
         await scan_manager.detach(job_id, websocket)
+
+
+@router.post("/admin/db-backup")
+def start_db_backup():
+    return create_backup()
+
+
+@router.get("/admin/db-backup")
+def list_db_backups():
+    return {"items": [item.__dict__ for item in list_backups()]}
+
+
+@router.get("/admin/db-backup/logs")
+def get_db_backup_logs(limit: int = 200):
+    return {"lines": read_logs(limit=limit)}
+
+
+@router.post("/admin/db-restore")
+def restore_db_backup(payload: dict):
+    file_name = payload.get("file_name")
+    if not file_name:
+        raise HTTPException(status_code=400, detail="file_name is required")
+    return restore_backup(file_name)
